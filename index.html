@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>THWABA PERFUMES — Crafted Fragrance. Timeless Presence.</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Lenis -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="progress"></div>
+  <div class="cursor-glow"></div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/916235917894" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
+    <span><img src="images/wats icon.png" alt="WhatsApp" style=" border-radius: 50%; width: 50px; height: 50px;"></span>
+  </a>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">THWABA PERFUMES</div>
+
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Collections</a>
+      <a href="#">Story</a>
+      <a href="#">Experience</a>
+      <a href="#">Contact</a>
+    </div>
+
+    <button id="darkModeToggle" class="dark-mode-btn">
+      <span class="sun-icon">☀️</span>
+      <span class="moon-icon">🌙</span>
+    </button>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Home</a>
+      <a href="#">Collections</a>
+      <a href="#">Story</a>
+      <a href="#">Experience</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+
+    <div class="hero-grid">
+
+      <div class="hero-text">
+        <h1>Crafted Fragrance.<br>Timeless Presence.</h1>
+
+        <p>
+          THWABA PERFUMES embodies refined luxury through soft sophistication,
+          modern craftsmanship, and unforgettable fragrance experiences inspired
+          by contemporary editorial fashion and timeless elegance.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary">Explore Collection</button>
+          <button class="btn btn-secondary">Luxury Experience</button>
+        </div>
+      </div>
+
+      <div class="hero-image">
+
+
+
+        <div class="perfume-frame">
+          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1200&auto=format&fit=crop" alt="Perfume bottle in glass frame">
+        </div>
+                <div class="floating-card card-1">
+          Soft Luxury Essence
+        </div>
+
+        <div class="floating-card card-2">
+          Modern Editorial Fragrance
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Collection -->
+  <section>
+
+    <div class="section-title">
+      <h2>Featured Collection</h2>
+      <p>
+        Discover signature fragrances crafted with precision, artistry,
+        and sophisticated modern elegance.
+      </p>
+    </div>
+
+        <div class="section-title-1">
+      <h2>Attar </h2>
+    
+    </div>
+    <div class="collection-grid">
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg"  >
+        <div class="card-content">
+          <h3>Makkah Blend HQ</h3>
+          <p>Long lasting ATTAR <br> PREMIUM ATTAR</p>
+           
+
+          <div class="price-row">
+            <div class="price">₹120</div>
+           
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg" >
+        <div class="card-content">
+          <h3>Black Orchid</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹145</div>
+         
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg" >
+
+        <div class="card-content">
+          <h3>Armani SI</h3>
+          <p>Long lasting ATTAR.</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+    
+          </div>
+        </div>
+      </div>
+
+            <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Jordan SP</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+            <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Invictus</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+
+          </div>
+        </div>
+      </div>
+
+            <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Naseem Lamsa</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+            <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Gucci Flora</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+            <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Pink Shiffon</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Marshallow</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Burberry For Her</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Rassasi Hawwas</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Musk Rose</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Arabian Tonca</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Musk Showq</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Marj HQ</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Paasha De Cartier HQ</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Baqarath HQ</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Imperial Valley HQ</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Velvet Musk HQ</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Musk Rijaly HQ</h3>
+          <p>Long lasting ATTAR</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    <br>
+    <br>  
+
+      <div class="section-title-1">
+      <h2>Oud </h2>
+      
+    </div>
+
+    
+      <div class="collection-grid">
+          <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Oud Lail</h3>
+          <p>Long lasting Oud</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+          <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Ameer Al Oud</h3>
+          <p>Long lasting Oud</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>  
+      
+          <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>White Oud</h3>
+          <p>Long lasting Oud</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>   
+      
+      
+          <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Oud Lavender HQ</h3>
+          <p>Long lasting Oud</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+
+          <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Oud Hamra</h3>
+          <p>Long lasting Oud</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+          <div class="perfume-card">
+        <img src="images/bottel.jpg">
+        <div class="card-content">
+          <h3>Oud Kuwaity HQ</h3>
+          <p>Long lasting Oud</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+
+          <div class="section-title-1">
+      <h2>Others</h2>      
+    </div>
+    <div class="collection-grid">
+
+                <div class="perfume-card">
+        <img src="images/electric burner.jpg">
+        <div class="card-content">
+          <h3>Electric Burner</h3>
+          <p>Smell good feel good</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+                <div class="perfume-card">
+        <img src="images/pyramid burner.jpg">
+        <div class="card-content">
+          <h3>Pyramid Burner</h3>
+          <p>Smell good feel good </p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+          <div class="perfume-card">
+        <img src="images/gift 1.jpg">
+        <div class="card-content">
+          <h3>Attar Gift Box</h3>
+          <p>Premium Quality</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+          <div class="perfume-card">
+        <img src="images/car hang 1.jpg">
+        <div class="card-content">
+          <h3>Car Hanging Perfume</h3>
+          <p>Feel driving</p>
+
+          <div class="price-row">
+            <div class="price">₹165</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </section>
+
+  <!-- Experience -->
+  <section>
+    <div class="experience">
+
+      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200&auto=format&fit=crop" alt="">
+
+      <div class="experience-content">
+        <h2>The Luxury Experience</h2>
+
+        <p>
+          Every THWABA fragrance is designed to feel cinematic, soft,
+          and unforgettable — blending heritage craftsmanship with
+          contemporary editorial aesthetics.
+        </p>
+
+        <p>
+          From hand-selected ingredients to elegant bottle architecture,
+          every detail reflects timeless sophistication and refined artistry.
+        </p>
+
+        <button class="btn btn-primary">Discover More</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Best Sellers -->
+  <section>
+
+    <div class="section-title">
+      <h2>Best Sellers</h2>
+      <p>
+        Signature creations loved for their depth, elegance,
+        and timeless sensory experience.
+      </p>
+    </div>
+
+    <div class="slider">
+
+      <div class="slide-card">
+        <img src="images/bottel.jpg">
+        <div class="content">
+          <h3>Armani SI</h3>
+        </div>
+      </div>
+
+      <div class="slide-card">
+        <img src="images/bottel.jpg">
+        <div class="content">
+          <h3>Baqarath HQ</h3>
+        </div>
+      </div>
+
+      <div class="slide-card">
+        <img src="images/bottel.jpg">
+        <div class="content">
+          <h3>Makkah Blend HQ
+          </h3>
+        </div>
+      </div>
+
+      <div class="slide-card">
+        <img src="images/bottel.jpg">
+        <div class="content">
+          <h3>Arabian Tonca</h3>
+        </div>
+      </div>
+            <div class="slide-card">
+        <img src="images/bottel.jpg" alt="">
+        <div class="content">
+          <h3>Musk Showq</h3>
+        </div>
+      </div>
+      
+
+    </div>
+
+  </section>
+
+  <!-- Testimonials -->
+  <section>
+
+    <div class="section-title">
+      <h2>Client Experiences</h2>
+      <p>
+        Luxury fragrances remembered long after the moment passes.
+      </p>
+    </div>
+
+    <div class="testimonials">
+
+      <div class="testimonial">
+        <p>
+          “An incredibly refined fragrance experience. Elegant,
+          modern, and deeply memorable.”
+        </p>
+        <h4>— Sophia Laurent</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>
+          “THWABA feels like a luxury fashion campaign in fragrance form.”
+        </p>
+        <h4>— Amelia Rose</h4>
+      </div>
+
+      <div class="testimonial">
+        <p>
+          “Minimal, sophisticated, and beautifully crafted in every detail.”
+        </p>
+        <h4>— Daniel Hart</h4>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+
+    <div class="newsletter-box">
+
+      <h2>Join  THWABA PERFUMES</h2>
+
+      <p>
+        Receive exclusive launches, fragrance stories,
+        and luxury editorial updates.
+      </p>
+
+      <div class="newsletter-form">
+        <a href="https://whatsapp.com/channel/0029Vb725wdCsU9IbaeTjk2Q" target="_blank" rel="noopener noreferrer" class="btn btn-primary">JOIN THWABA PERFUMES</a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <h3>THWABA</h3>
+        <p>
+          Crafted fragrance experiences inspired by modern luxury,
+          editorial elegance, and timeless sophistication.
+        </p>
+      </div>
+
+      <div class="footer-links">
+
+        <div>
+          <h4>Navigation</h4>
+          <a href="#">Home</a>
+          <a href="#">Collections</a>
+          <a href="#">Story</a>
+        </div>
+
+        <div>
+          <h4>Support</h4>
+          <a href="#">Contact</a>
+          <a href="#">Shipping</a>
+          <a href="#">Privacy</a>
+        </div>
+
+        <div>
+          <h4>Social</h4>
+          <a href="#">Instagram</a>
+          <a href="#">Pinterest</a>
+          <a href="#">TikTok</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </footer>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+ <script src="script.js"></script>
+</body>
+</html>
