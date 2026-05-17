@@ -1,694 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>THWABA PERFUMES — Crafted Fragrance. Timeless Presence.</title>
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- GSAP -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
-  <!-- Lenis -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="progress"></div>
-  <div class="cursor-glow"></div>
+  <!-- Scroll Progress Bar -->
+  <div id="progressBar"></div>
 
-  <!-- Floating WhatsApp Button -->
-  <a href="https://wa.me/916235917894" target="_blank" rel="noopener noreferrer" class="whatsapp-float">
-    <span><img src="images/wats icon.png" alt="WhatsApp" style=" border-radius: 50%; width: 50px; height: 50px;"></span>
+  <!-- Aurora Background -->
+  <div class="aurora" aria-hidden="true">
+    <div class="aurora-blob a1"></div>
+    <div class="aurora-blob a2"></div>
+    <div class="aurora-blob a3"></div>
+    <div class="aurora-blob a4"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/916235917894" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp">
+    <img src="images/wats icon.png" alt="WhatsApp" style="border-radius:50%;width:26px;height:26px;">
   </a>
 
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">THWABA PERFUMES</div>
+  <!-- Scroll to Top -->
+  <button id="scrollTop" aria-label="Scroll to top">↑</button>
 
-    <div class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Collections</a>
-      <a href="#">Story</a>
-      <a href="#">Experience</a>
-      <a href="#">Contact</a>
+  <!-- ═══ NAVBAR ═══ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="logo-wrap">
+        <span class="logo-main">THWABA</span>
+        <span class="logo-sub">PERFUMES</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home"       class="nav-a">Home</a>
+        <a href="#collection" class="nav-a">Collections</a>
+        <a href="#contact"    class="nav-a">Contact</a>
+      </div>
+
+      <div class="nav-right">
+        <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
 
-    <button id="darkModeToggle" class="dark-mode-btn">
-      <span class="sun-icon">☀️</span>
-      <span class="moon-icon">🌙</span>
-    </button>
-
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-      <a href="#">Home</a>
-      <a href="#">Collections</a>
-      <a href="#">Story</a>
-      <a href="#">Experience</a>
-      <a href="#">Contact</a>
+      <a href="#home">Home</a>
+      <a href="#collection">Collections</a>
+      <a href="#contact">Contact</a>
+      <button class="dark-mode-toggle dark-mode-mobile" id="darkModeToggleMobile" aria-label="Toggle dark mode">
+        <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
-
-    <div class="particle p1"></div>
-    <div class="particle p2"></div>
-    <div class="particle p3"></div>
-    <div class="particle p4"></div>
-
-    <div class="hero-grid">
-
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="home">
+    <div class="hero-noise"></div>
+    <div class="hero-inner">
       <div class="hero-text">
-        <h1>Crafted Fragrance.<br>Timeless Presence.</h1>
-
-        <p>
+        <div class="hero-eyebrow">
+          <span class="eyebrow-line"></span>
+          <span>Est. Arabian Luxury</span>
+          <span class="eyebrow-line"></span>
+        </div>
+        <h1 class="hero-h1">
+          Crafted<br>
+          <em>Fragrance.</em><br>
+          Timeless<br>
+          Presence.
+        </h1>
+        <p class="hero-p">
           THWABA PERFUMES embodies refined luxury through soft sophistication,
-          modern craftsmanship, and unforgettable fragrance experiences inspired
-          by contemporary editorial fashion and timeless elegance.
+          modern craftsmanship, and unforgettable fragrance experiences.
         </p>
-
-        <div class="hero-buttons">
-          <button class="btn btn-primary">Explore Collection</button>
-          <button class="btn btn-secondary">Luxury Experience</button>
+        <div class="hero-btns">
+          <a href="#collection" class="btn-crim"><span>Explore Collection</span></a>
+          <a href="#contact"    class="btn-ghost">Order Now</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <strong>40+</strong>
+            <span>Fragrances</span>
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-item">
+            <strong>100%</strong>
+            <span>Pure Attar</span>
+          </div>
+          <div class="meta-divider"></div>
+          <div class="meta-item">
+            <strong>Kerala</strong>
+            <span>Crafted</span>
+          </div>
         </div>
       </div>
 
-      <div class="hero-image">
-
-
-
-        <div class="perfume-frame">
-          <img src="images/car hang 1.jpg">
+      <div class="hero-visual">
+        <div class="hero-blob-ring"></div>
+        <div class="hero-img-wrap">
+          <img src="images/car hang 1.jpg" alt="Thwaba Perfume" class="hero-img"/>
+          <div class="img-reflection"></div>
         </div>
-                <div class="floating-card card-1">
+        <div class="float-tag t1">
+          <div class="tag-dot"></div>
           Soft Luxury Essence
         </div>
-
-        <div class="floating-card card-2">
-          Modern Editorial Fragrance
+        <div class="float-tag t2">
+          <div class="tag-dot"></div>
+          Arabian Craftsmanship
         </div>
-
       </div>
-
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span></span>
     </div>
   </section>
 
-  <!-- Collection -->
-  <section>
+  <!-- ═══ SCENT TICKER ═══ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <span>ATTAR ✦</span>
+      <span>OUD ✦</span>
+      <span>MUSK ✦</span>
+      <span>BAKHOOR ✦</span>
+      <span>LUXURY FRAGRANCE ✦</span>
+      <span>ARABIAN HERITAGE ✦</span>
+      <span>ATTAR ✦</span>
+      <span>OUD ✦</span>
+      <span>MUSK ✦</span>
+      <span>BAKHOOR ✦</span>
+      <span>LUXURY FRAGRANCE ✦</span>
+      <span>ARABIAN HERITAGE ✦</span>
+    </div>
+  </div>
 
-    <div class="section-title">
-      <h2>Featured Collection</h2>
-      <p>
-        Discover signature fragrances crafted with precision, artistry,
-        and sophisticated modern elegance.
+  <!-- ═══ COLLECTION ═══ -->
+  <section class="section" id="collection">
+    <div class="sec-header reveal">
+      <div class="sec-label">✦ Our Products</div>
+      <h2 class="sec-title">Featured Collection</h2>
+      <p class="sec-sub">Signature fragrances crafted with precision, artistry, and sophisticated modern elegance.</p>
+    </div>
+
+    <!-- ATTAR -->
+    <div class="cat-header">
+      <h3 class="cat-title">Attar</h3>
+      <div class="cat-line"></div>
+    </div>
+
+    <div class="prod-grid">
+
+      <div class="prod-card reveal">
+        <div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Makkah Blend HQ"/><div class="prod-shine"></div></div>
+        <div class="prod-body"><h4>Makkah Blend HQ</h4><p>Long lasting ATTAR · Premium</p>
+          <div class="prod-foot"><span class="prod-price">₹120</span>
+            <a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Makkah%20Blend%20HQ%20%E2%82%B9120" target="_blank" class="wa-order">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Black Orchid"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Black Orchid</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹145</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Black%20Orchid%20%E2%82%B9145" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Armani SI"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Armani SI</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Armani%20SI%20%E2%82%B9165" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Jordan SP"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Jordan SP</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Jordan%20SP" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Invictus"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Invictus</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Invictus" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Naseem Lamsa"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Naseem Lamsa</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Naseem%20Lamsa" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Gucci Flora"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Gucci Flora</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Gucci%20Flora" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Pink Shiffon"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Pink Shiffon</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Pink%20Shiffon" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Marshallow"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Marshallow</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Marshallow" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Burberry For Her"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Burberry For Her</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Burberry%20For%20Her" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Rassasi Hawwas"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Rassasi Hawwas</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Rassasi%20Hawwas" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Musk Rose"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Musk Rose</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Musk%20Rose" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Arabian Tonca"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Arabian Tonca</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Arabian%20Tonca" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Musk Showq"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Musk Showq</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Musk%20Showq" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Marj HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Marj HQ</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Marj%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Paasha De Cartier HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Paasha De Cartier HQ</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Paasha%20De%20Cartier%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Baqarath HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Baqarath HQ</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Baqarath%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Imperial Valley HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Imperial Valley HQ</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Imperial%20Valley%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Velvet Musk HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Velvet Musk HQ</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Velvet%20Musk%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Musk Rijaly HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Musk Rijaly HQ</h4><p>Long lasting ATTAR</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Musk%20Rijaly%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+
+    </div><!-- /Attar grid -->
+
+    <!-- OUD -->
+    <div class="cat-header" style="margin-top:4rem;">
+      <h3 class="cat-title">Oud</h3>
+      <div class="cat-line"></div>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Oud Lail"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Oud Lail</h4><p>Long lasting Oud</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Oud%20Lail" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Ameer Al Oud"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Ameer Al Oud</h4><p>Long lasting Oud</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Ameer%20Al%20Oud" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="White Oud"/><div class="prod-shine"></div></div><div class="prod-body"><h4>White Oud</h4><p>Long lasting Oud</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20White%20Oud" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Oud Lavender HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Oud Lavender HQ</h4><p>Long lasting Oud</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Oud%20Lavender%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Oud Hamra"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Oud Hamra</h4><p>Long lasting Oud</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Oud%20Hamra" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/bottel.jpg" alt="Oud Kuwaity HQ"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Oud Kuwaity HQ</h4><p>Long lasting Oud</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Oud%20Kuwaity%20HQ" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+    </div><!-- /Oud grid -->
+
+    <!-- OTHERS -->
+    <div class="cat-header" style="margin-top:4rem;">
+      <h3 class="cat-title">Others</h3>
+      <div class="cat-line"></div>
+    </div>
+    <div class="prod-grid">
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/electric burner.jpg" alt="Electric Burner"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Electric Burner</h4><p>Smell good, feel good</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Electric%20Burner" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/pyramid burner.jpg" alt="Pyramid Burner"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Pyramid Burner</h4><p>Smell good, feel good</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Pyramid%20Burner" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/gift 1.jpg" alt="Attar Gift Box"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Attar Gift Box</h4><p>Premium Quality</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Attar%20Gift%20Box" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+      <div class="prod-card reveal"><div class="prod-img-wrap"><img src="images/car hang 1.jpg" alt="Car Hanging Perfume"/><div class="prod-shine"></div></div><div class="prod-body"><h4>Car Hanging Perfume</h4><p>Feel the drive</p><div class="prod-foot"><span class="prod-price">₹165</span><a href="https://wa.me/916235917894?text=Hi%2C%20I%27m%20interested%20in%20Car%20Hanging%20Perfume" target="_blank" class="wa-order"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>Order</a></div></div></div>
+    </div><!-- /Others grid -->
+
+  </section>
+
+  <!-- ═══ JOIN / NEWSLETTER ═══ -->
+  <section class="section join-section">
+    <div class="join-box reveal">
+      <div class="sec-label" style="text-align:center;">✦ Community</div>
+      <h2 class="sec-title" style="text-align:center;">Join THWABA</h2>
+      <p style="text-align:center;color:var(--text-muted);max-width:500px;margin:0 auto 2rem;">
+        Receive exclusive launches, fragrance stories, and luxury editorial updates.
       </p>
-    </div>
-
-        <div class="section-title-1">
-      <h2>Attar </h2>
-    
-    </div>
-    <div class="collection-grid">
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg"  >
-        <div class="card-content">
-          <h3>Makkah Blend HQ</h3>
-          <p>Long lasting ATTAR <br> PREMIUM ATTAR</p>
-           
-
-          <div class="price-row">
-            <div class="price">₹120</div>
-           
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg" >
-        <div class="card-content">
-          <h3>Black Orchid</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹145</div>
-         
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg" >
-
-        <div class="card-content">
-          <h3>Armani SI</h3>
-          <p>Long lasting ATTAR.</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-    
-          </div>
-        </div>
-      </div>
-
-            <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Jordan SP</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-            <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Invictus</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-
-          </div>
-        </div>
-      </div>
-
-            <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Naseem Lamsa</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-            <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Gucci Flora</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-            <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Pink Shiffon</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Marshallow</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Burberry For Her</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Rassasi Hawwas</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Musk Rose</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Arabian Tonca</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Musk Showq</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Marj HQ</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Paasha De Cartier HQ</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Baqarath HQ</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Imperial Valley HQ</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Velvet Musk HQ</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Musk Rijaly HQ</h3>
-          <p>Long lasting ATTAR</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-      </div>
-    <br>
-    <br>  
-
-      <div class="section-title-1">
-      <h2>Oud </h2>
-      
-    </div>
-
-    
-      <div class="collection-grid">
-          <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Oud Lail</h3>
-          <p>Long lasting Oud</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-          <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Ameer Al Oud</h3>
-          <p>Long lasting Oud</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>  
-      
-          <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>White Oud</h3>
-          <p>Long lasting Oud</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>   
-      
-      
-          <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Oud Lavender HQ</h3>
-          <p>Long lasting Oud</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-
-          <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Oud Hamra</h3>
-          <p>Long lasting Oud</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-          <div class="perfume-card">
-        <img src="images/bottel.jpg">
-        <div class="card-content">
-          <h3>Oud Kuwaity HQ</h3>
-          <p>Long lasting Oud</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <br>
-
-          <div class="section-title-1">
-      <h2>Others</h2>      
-    </div>
-    <div class="collection-grid">
-
-                <div class="perfume-card">
-        <img src="images/electric burner.jpg">
-        <div class="card-content">
-          <h3>Electric Burner</h3>
-          <p>Smell good feel good</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-                <div class="perfume-card">
-        <img src="images/pyramid burner.jpg">
-        <div class="card-content">
-          <h3>Pyramid Burner</h3>
-          <p>Smell good feel good </p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-          <div class="perfume-card">
-        <img src="images/gift 1.jpg">
-        <div class="card-content">
-          <h3>Attar Gift Box</h3>
-          <p>Premium Quality</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-          <div class="perfume-card">
-        <img src="images/car hang 1.jpg">
-        <div class="card-content">
-          <h3>Car Hanging Perfume</h3>
-          <p>Feel driving</p>
-
-          <div class="price-row">
-            <div class="price">₹165</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-
-  </section>
-
-  <!-- Experience -->
-  <section>
-    <div class="experience">
-
-      <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=1200&auto=format&fit=crop" alt="">
-
-      <div class="experience-content">
-        <h2>The Luxury Experience</h2>
-
-        <p>
-          Every THWABA fragrance is designed to feel cinematic, soft,
-          and unforgettable — blending heritage craftsmanship with
-          contemporary editorial aesthetics.
-        </p>
-
-        <p>
-          From hand-selected ingredients to elegant bottle architecture,
-          every detail reflects timeless sophistication and refined artistry.
-        </p>
-
-        <button class="btn btn-primary">Discover More</button>
-      </div>
-
+      <a href="https://whatsapp.com/channel/0029Vb725wdCsU9IbaeTjk2Q" target="_blank" rel="noopener noreferrer" class="btn-crim">
+        <span>Join THWABA PERFUMES</span>
+      </a>
     </div>
   </section>
 
-  <!-- Best Sellers -->
-  <section>
-
-    <div class="section-title">
-      <h2>Best Sellers</h2>
-      <p>
-        Signature creations loved for their depth, elegance,
-        and timeless sensory experience.
-      </p>
+  <!-- ═══ CONTACT ═══ -->
+  <section class="section contact-section" id="contact">
+    <div class="sec-header reveal">
+      <div class="sec-label">✦ Find Us</div>
+      <h2 class="sec-title">Contact Us</h2>
+      <p class="sec-sub">Reach out for orders, store visits, or fragrance guidance. We're always happy to help.</p>
     </div>
 
-    <div class="slider">
+    <div class="contact-grid reveal">
+      <div class="contact-card">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .95h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <h4>Phone</h4>
+            <p><a href="tel:+916235917894" style="color:inherit;text-decoration:none;">+91 62359 17894</a></p>
+          </div>
+        </div>
 
-      <div class="slide-card">
-        <img src="images/bottel.jpg">
-        <div class="content">
-          <h3>Armani SI</h3>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <h4>Location</h4>
+            <p>Palakkad - Ponnani Rd,<br>Parali, Kerala 678611, India</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <h4>Directions</h4>
+            <a href="https://maps.google.com/maps?q=QHQP%2B83R+Parali+Kerala" target="_blank" rel="noopener" class="dir-link">View on Google Maps ↗</a>
+          </div>
+        </div>
+
+        <div class="contact-socials">
+          <a href="https://wa.me/916235917894" target="_blank" rel="noopener" class="social-btn wa-social">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://www.instagram.com/thwaba.perfumes?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="social-btn ig-social">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
         </div>
       </div>
 
-      <div class="slide-card">
-        <img src="images/bottel.jpg">
-        <div class="content">
-          <h3>Baqarath HQ</h3>
-        </div>
+      <!-- Map -->
+      <div class="map-card">
+        <iframe
+          src="https://maps.google.com/maps?q=QHQP%2B83R+Parali+Kerala+678611&t=&z=15&ie=UTF8&iwloc=&output=embed"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="THWABA PERFUMES Location">
+        </iframe>
       </div>
-
-      <div class="slide-card">
-        <img src="images/bottel.jpg">
-        <div class="content">
-          <h3>Makkah Blend HQ
-          </h3>
-        </div>
-      </div>
-
-      <div class="slide-card">
-        <img src="images/bottel.jpg">
-        <div class="content">
-          <h3>Arabian Tonca</h3>
-        </div>
-      </div>
-            <div class="slide-card">
-        <img src="images/bottel.jpg" alt="">
-        <div class="content">
-          <h3>Musk Showq</h3>
-        </div>
-      </div>
-      
-
     </div>
-
   </section>
 
-  <!-- Testimonials -->
-  <section>
-
-    <div class="section-title">
-      <h2>Client Experiences</h2>
-      <p>
-        Luxury fragrances remembered long after the moment passes.
-      </p>
-    </div>
-
-    <div class="testimonials">
-
-      <div class="testimonial">
-        <p>
-          “An incredibly refined fragrance experience. Elegant,
-          modern, and deeply memorable.”
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer">
+    <div class="footer-body">
+      <div class="footer-main" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; justify-content: center; width: 100%;">
+        
+        <a href="#home" class="footer-logo-wrap" style="justify-content: center;">
+          <span class="logo-main">THWABA</span>
+          <span class="logo-sub">PERFUMES</span>
+        </a>
+        
+        <p class="footer-desc" style="max-width: 600px; margin: 0 auto;">
+          Refined luxury through soft sophistication, modern craftsmanship, and unforgettable fragrance experiences — crafted in Kerala, inspired by Arabia.
         </p>
-        <h4>— Sophia Laurent</h4>
-      </div>
 
-      <div class="testimonial">
-        <p>
-          “THWABA feels like a luxury fashion campaign in fragrance form.”
-        </p>
-        <h4>— Amelia Rose</h4>
-      </div>
+        <!-- Crimson glowing separator line -->
+        <div class="footer-glow-bar" style="position: relative; width: 200px; margin: 1.5rem auto;"></div>
 
-      <div class="testimonial">
-        <p>
-          “Minimal, sophisticated, and beautifully crafted in every detail.”
-        </p>
-        <h4>— Daniel Hart</h4>
-      </div>
+        <p class="footer-copy">&copy; 2026 THWABA PERFUMES. All rights reserved.</p>
 
+      </div>
     </div>
-
-  </section>
-
-  <!-- Newsletter -->
-  <section class="newsletter">
-
-    <div class="newsletter-box">
-
-      <h2>Join  THWABA PERFUMES</h2>
-
-      <p>
-        Receive exclusive launches, fragrance stories,
-        and luxury editorial updates.
-      </p>
-
-      <div class="newsletter-form">
-        <a href="https://whatsapp.com/channel/0029Vb725wdCsU9IbaeTjk2Q" target="_blank" rel="noopener noreferrer" class="btn btn-primary">JOIN THWABA PERFUMES</a>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Footer -->
-  <footer>
-
-    <div class="footer-grid">
-
-      <div class="footer-brand">
-        <h3>THWABA</h3>
-        <p>
-          Crafted fragrance experiences inspired by modern luxury,
-          editorial elegance, and timeless sophistication.
-        </p>
-      </div>
-
-      <div class="footer-links">
-
-        <div>
-          <h4>Navigation</h4>
-          <a href="#">Home</a>
-          <a href="#">Collections</a>
-          <a href="#">Story</a>
-        </div>
-
-        <div>
-          <h4>Support</h4>
-          <a href="#">Contact</a>
-          <a href="#">Shipping</a>
-          <a href="#">Privacy</a>
-        </div>
-
-        <div>
-          <h4>Social</h4>
-          <a href="#">Instagram</a>
-          <a href="#">Pinterest</a>
-          <a href="#">TikTok</a>
-        </div>
-
-      </div>
-
-    </div>
-
   </footer>
- 
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
- <script src="script.js"></script>
+
+  <script src="script.js"></script>
 </body>
 </html>
